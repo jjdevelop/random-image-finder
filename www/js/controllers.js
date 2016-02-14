@@ -1,6 +1,8 @@
 angular.module('imagefinder.controllers', [])
 
-.controller('SearchCtrl', function($scope) {})
+.controller('SearchCtrl', function($scope, Flickr) {
+
+})
 
 .controller('favoritesCtrl', function($scope) {
   // With the new view caching in Ionic, Controllers are only called

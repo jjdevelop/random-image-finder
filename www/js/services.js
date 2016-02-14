@@ -1,50 +1,34 @@
-angular.module('imagefinder.services', [])
+angular.module('imagefinder.services', ['ngResource'])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+.factory('Flickr', function() {
+  var api_key = "9c413dc5d8659716dd7a3385b821a464";
+  var shared_key = '9fe62b0f57a487c4';
+  var base_url= "https://api.flickr.com/services/rest/";
+  var perPage =  150;
 
   return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+    search: function(search) {
+      var deferred = $q.defer();
+
+      var params = {
+          api_key: api_key,
+          per_page: perPage,
+          format: 'json',
+          nojsoncallback: 1,
+          method: 'flickr.photos.search'
+      };
+
+      params.text = search;
+
+      $http({method: 'GET', url: base_url, params: params}).
+          success(function(data, status, headers, config) {
+               deferred.resolve(data);
+          }).
+          error(function(data, status, headers, config) {
+              deferred.reject(status);
+           });
+
+      return deferred.promise;
     }
   };
 });

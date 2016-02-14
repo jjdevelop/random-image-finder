@@ -8,4 +8,7 @@
 	    </label>
     </form>
   	<label class="item">{{ photos }}</label>
+  	<div>
+    	<div ng-repeat="photo in photos"><img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"></div>
+	</div>
 </ion-view>

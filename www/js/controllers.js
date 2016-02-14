@@ -20,8 +20,6 @@ angular.module('imagefinder.controllers', [])
             $scope.pages = data.photos.pages;
             $scope.total = data.photos.total;
             $scope.loading = false;
-            console.log($scope.photos);
-
         }, function(err) {
             console.log('Failed: ' + err);
             $scope.loading = false;

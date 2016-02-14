@@ -1,4 +1,4 @@
-angular.module('imagefinder.services', ['ngResource'])
+angular.module('imagefinder.services', ['ionic'])
 
 .factory('Flickr', function() {
   var api_key = "9c413dc5d8659716dd7a3385b821a464";

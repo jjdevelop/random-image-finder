@@ -1,7 +1,32 @@
 angular.module('imagefinder.controllers', [])
 
 .controller('SearchCtrl', function($scope, Flickr) {
+	$scope.photos = [];
+    $scope.currentPhoto = null;
+    $scope.prevPhoto = null;
+    $scope.nextPhoto = null;
+    $scope.currentPhotoSrc = '';
+    $scope.text = '';
+    $scope.modalOpened = null;
 
+    $scope.search = function(search){
+    	console.log('Searching: ' + search);
+        $scope.loading = true;
+        var promise = Flickr.search(search);
+        promise.then(function(data) {
+            $scope.photos = data.photos;
+            $scope.photos = data.photos.photo;
+            $scope.page = data.photos.page;
+            $scope.pages = data.photos.pages;
+            $scope.total = data.photos.total;
+            $scope.loading = false;
+            console.log($scope.photos);
+
+        }, function(err) {
+            console.log('Failed: ' + err);
+            $scope.loading = false;
+        });
+    }
 })
 
 .controller('favoritesCtrl', function($scope) {

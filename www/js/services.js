@@ -1,6 +1,6 @@
 angular.module('imagefinder.services', ['ionic'])
 
-.factory('Flickr', function() {
+.factory('Flickr', function($q, $http) {
   var api_key = "9c413dc5d8659716dd7a3385b821a464";
   var shared_key = '9fe62b0f57a487c4';
   var base_url= "https://api.flickr.com/services/rest/";

@@ -30,7 +30,7 @@ angular.module('imagefinder.controllers', [])
 
     $scope.next = function(){
       $scope.count+=1;
-      $scope.currentPhoto = $scope.photos[$scope.count]
+      $scope.currentPhoto = $scope.photos[$scope.count];
 
     }
 })

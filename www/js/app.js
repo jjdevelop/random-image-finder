@@ -58,46 +58,56 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.search', {
+    .state('search', {
     url: '/search',
-    views: {
-      'tab-search': {
-        templateUrl: 'templates/tab-search.html',
-        controller: 'SearchCtrl'
-      }
-    }
+    templateUrl: 'templates/tab-search.html',
+    controller: 'SearchCtrl'
   })
 
-  .state('tab.favorites', {
-      url: '/favorites',
-      views: {
-        'tab-favorites': {
-          templateUrl: 'templates/tab-favorites.html',
-          controller: 'favoritesCtrl'
-        }
-      }
-    })
+  // // setup an abstract state for the tabs directive
+  //   .state('tab', {
+  //   url: '/tab',
+  //   abstract: true,
+  //   templateUrl: 'templates/tabs.html'
+  // })
 
-  .state('tab.settings', {
-    url: '/settings',
-    views: {
-      'tab-settings': {
-        templateUrl: 'templates/tab-settings.html',
-        controller: 'settingsCtrl'
-      }
-    }
-  });
+  // // Each tab has its own nav history stack:
+
+  // .state('tab.search', {
+  //   url: '/search',
+  //   views: {
+  //     'tab-search': {
+  //       templateUrl: 'templates/tab-search.html',
+  //       controller: 'SearchCtrl'
+  //     }
+  //   }
+  // })
+
+  // .state('tab.favorites', {
+  //     url: '/favorites',
+  //     views: {
+  //       'tab-favorites': {
+  //         templateUrl: 'templates/tab-favorites.html',
+  //         controller: 'favoritesCtrl'
+  //       }
+  //     }
+  //   })
+
+  // .state('tab.settings', {
+  //   url: '/settings',
+  //   views: {
+  //     'tab-settings': {
+  //       templateUrl: 'templates/tab-settings.html',
+  //       controller: 'settingsCtrl'
+  //     }
+  //   }
+  // })
+
+  ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/search');
+  // $urlRouterProvider.otherwise('/tab/search');
+  $urlRouterProvider.otherwise('/search');
 
   $ionicConfigProvider.tabs.position('top');
 

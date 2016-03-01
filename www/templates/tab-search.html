@@ -7,31 +7,26 @@
 
 	    </label>
     </form>
-  	<div class="row">
+  	<div class="item">
   		<div class="center">
 	  		<div ng-show="loading"><img src="img/loading.gif"></div>
 	    	<div ng-hide="loading"><img ng-src="http://farm{{currentPhoto.farm}}.static.flickr.com/{{currentPhoto.server}}/{{currentPhoto.id}}_{{currentPhoto.secret}}_m.jpg"></div>
 <!-- 	    	<div ng-hide="loading" ng-repeat="photo in photos"><img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"></div> -->
     	</div>
-  </div>
+</div>
 <div>
 <!-- 		<button ng-click=next()>
 		  Next
 		</button> -->
 
- <div class="item tabs tabs-secondary tabs-icon-top bottom">
-<!-- <div class="bar bar-footer"> -->
+ <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item" ng-click="next()">
-          <i class="icon ion-arrow-left-a"></i>
-          Previous
+          <i class="icon ion-close"></i>
+          Skip
         </a>
-        <a class="tab-item" ng-click="next()">  
+        <a class="tab-item" ng-click="next()">
           <i class="icon ion-heart"></i>
           Favorite
-        </a>
-        <a class="tab-item" ng-click="next()">
-          <i class="icon ion-arrow-right-a"></i>
-          Next
         </a>
       </div>
 

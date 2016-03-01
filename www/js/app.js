@@ -49,7 +49,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -98,7 +98,5 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/search');
-
-  $ionicConfigProvider.tabs.position('top');
 
 });

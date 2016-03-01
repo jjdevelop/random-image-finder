@@ -6,7 +6,7 @@ angular.module('imagefinder.controllers', [])
     $scope.prevPhoto = null;
     $scope.nextPhoto = null;
     $scope.currentPhotoSrc = '';
-    $scope.count = 0;
+    $scope.count = null;
 
     $scope.search = function(search){
         $scope.loading = true;
@@ -18,8 +18,16 @@ angular.module('imagefinder.controllers', [])
             // $scope.pages = data.photos.pages;
             // $scope.total = data.photos.total;
             $scope.loading = false;
-            $scope.count = 0;
-            $scope.currentPhoto = data.photos.photo[$scope.count];
+
+            if ($scope.photos.length > 0) {
+              $scope.count = 0;
+              $scope.currentPhoto = data.photos.photo[$scope.count];
+              $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
+            } else {
+              $scope.count = null;
+              $scope.currentPhoto = null;
+              $scope.currentPhotoSrc = "img/sad_no_results.png";
+            }
         }, function(err) {
             console.log('Failed: ' + err);
             $scope.loading = false;
@@ -27,17 +35,33 @@ angular.module('imagefinder.controllers', [])
     }
 
     $scope.next = function(){
-      $scope.count += 1;
-      $scope.currentPhoto = $scope.photos[$scope.count];
-      console.log('Count:' + $scope.count);
+      if ($scope.photos.length > 0) {
+        $scope.count += 1;
+        $scope.currentPhoto = $scope.photos[$scope.count];
+        $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
+        console.log('Count:' + $scope.count);
+      }
     }
 
     $scope.prev = function(){
       if ($scope.count > 0) {
         $scope.count -= 1;
         $scope.currentPhoto = $scope.photos[$scope.count];
+        $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
       }
       console.log('Count:' + $scope.count);
+    }
+
+    $scope.getCurrentPhotoSrc = function() {
+      return 'http://farm' 
+                                + $scope.currentPhoto.farm 
+                                + '.static.flickr.com/' 
+                                + $scope.currentPhoto.server 
+                                + '/' 
+                                + $scope.currentPhoto.id 
+                                + '_'
+                                + $scope.currentPhoto.secret
+                                + '_z.jpg';
     }
 })
 

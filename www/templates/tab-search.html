@@ -17,16 +17,15 @@
 
 
   <div class="item tabs tabs-secondary tabs-icon-top bottom">
-        <a class="tab-item" ng-click="next()">
+        <a class="tab-item" ng-disabled="count < 1" ng-click="prev()">
           <i class="icon ion-arrow-left-a"></i>
           Previous
           <i class="icon ion-close"></i>
-          Skip
         </a>
-        <a class="tab-item" ng-click="next()">
+       <!--  <a class="tab-item" ng-click="next()">
           <i class="icon ion-heart"></i>
           Favorite
-        </a>
+        </a> -->
         <a class="tab-item" ng-click="next()">
           <i class="icon ion-arrow-right-a"></i>
           Next

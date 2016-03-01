@@ -1,26 +1,24 @@
 angular.module('imagefinder.controllers', [])
 
 .controller('SearchCtrl', function($scope, Flickr) {
-	$scope.photos = [];
+	  $scope.photos = [];
     $scope.currentPhoto = null;
     $scope.prevPhoto = null;
     $scope.nextPhoto = null;
     $scope.currentPhotoSrc = '';
-    $scope.text = '';
-    $scope.modalOpened = null;
-    $scope.count=0;
+    $scope.count = 0;
 
     $scope.search = function(search){
-    	console.log('Searching: ' + search);
         $scope.loading = true;
         var promise = Flickr.search(search);
         promise.then(function(data) {
             // $scope.photos = data.photos;
             $scope.photos = data.photos.photo;
-            $scope.page = data.photos.page;
-            $scope.pages = data.photos.pages;
-            $scope.total = data.photos.total;
+            // $scope.page = data.photos.page;
+            // $scope.pages = data.photos.pages;
+            // $scope.total = data.photos.total;
             $scope.loading = false;
+            $scope.count = 0;
             $scope.currentPhoto = data.photos.photo[$scope.count];
         }, function(err) {
             console.log('Failed: ' + err);
@@ -29,9 +27,17 @@ angular.module('imagefinder.controllers', [])
     }
 
     $scope.next = function(){
-      $scope.count+=1;
+      $scope.count += 1;
       $scope.currentPhoto = $scope.photos[$scope.count];
+      console.log('Count:' + $scope.count);
+    }
 
+    $scope.prev = function(){
+      if ($scope.count > 0) {
+        $scope.count -= 1;
+        $scope.currentPhoto = $scope.photos[$scope.count];
+      }
+      console.log('Count:' + $scope.count);
     }
 })
 

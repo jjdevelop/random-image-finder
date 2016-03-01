@@ -4,14 +4,12 @@
 	    <label class="item item-input">
 	        <i class="icon ion-search placeholder-icon"></i>
 	        <input type="search" placeholder="Search" ng-model="searchTerm">
-
 	    </label>
     </form>
-  	<div class="item">
+  	<div class="row">
   		<div class="center">
-	  		<div ng-show="loading"><img src="img/loading.gif"></div>
-	    	<div ng-hide="loading"><img ng-src="http://farm{{currentPhoto.farm}}.static.flickr.com/{{currentPhoto.server}}/{{currentPhoto.id}}_{{currentPhoto.secret}}_m.jpg"></div>
-<!-- 	    	<div ng-hide="loading" ng-repeat="photo in photos"><img ng-src="http://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"></div> -->
+	  		<div ng-show="loading" class="loading_image"><img class="img_result" src="img/loading.gif"></div>
+	    	<div ng-hide="loading"><img class="img_result" ng-src="http://farm{{currentPhoto.farm}}.static.flickr.com/{{currentPhoto.server}}/{{currentPhoto.id}}_{{currentPhoto.secret}}_z.jpg"></div>
     	</div>
 </div>
 <div>

@@ -9,6 +9,7 @@ angular.module('imagefinder.controllers', [])
     $scope.count = null;
 
     $scope.search = function(search){
+        cordova.plugins.Keyboard.close();
         $scope.loading = true;
         var promise = Flickr.search(search);
         promise.then(function(data) {

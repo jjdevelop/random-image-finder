@@ -9,6 +9,7 @@
 .img_result {
 	width: 100%;
     max-width: 100%;
+    max-height: 70%;
     height: auto;
 }
 

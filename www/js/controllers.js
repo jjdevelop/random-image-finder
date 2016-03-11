@@ -9,7 +9,10 @@ angular.module('imagefinder.controllers', [])
     $scope.count = null;
 
     $scope.search = function(search){
-        cordova.plugins.Keyboard.close();
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+          cordova.plugins.Keyboard.close();
+        }
+        
         $scope.loading = true;
         var promise = Flickr.search(search);
         promise.then(function(data) {
@@ -55,14 +58,14 @@ angular.module('imagefinder.controllers', [])
 
     $scope.getCurrentPhotoSrc = function() {
       return 'http://farm' 
-                                + $scope.currentPhoto.farm 
-                                + '.static.flickr.com/' 
-                                + $scope.currentPhoto.server 
-                                + '/' 
-                                + $scope.currentPhoto.id 
-                                + '_'
-                                + $scope.currentPhoto.secret
-                                + '_z.jpg';
+              + $scope.currentPhoto.farm 
+              + '.static.flickr.com/' 
+              + $scope.currentPhoto.server 
+              + '/' 
+              + $scope.currentPhoto.id 
+              + '_'
+              + $scope.currentPhoto.secret
+              + '_z.jpg';
     }
 })
 

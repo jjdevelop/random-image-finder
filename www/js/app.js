@@ -25,7 +25,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
         // select the right Ad Id according to platform
         if( /(android)/i.test(navigator.userAgent) ) { 
             admobid = { // for Android
-                banner: 'ca-app-pub-6869992474017983/9375997553',
+                banner: 'ca-app-pub-4258706668546151/3211364822',
                 interstitial: 'ca-app-pub-6869992474017983/1657046752'
             };
         } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
@@ -43,6 +43,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   if(window.AdMob) AdMob.createBanner( {
       adId:admobid.banner, 
       position:AdMob.AD_POSITION.BOTTOM_CENTER, 
+      isTesting: true,
       autoShow:true} );
 
 

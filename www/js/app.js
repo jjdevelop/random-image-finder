@@ -51,6 +51,8 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  // Centering Title
+  $ionicConfigProvider.navBar.alignTitle('center');
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router

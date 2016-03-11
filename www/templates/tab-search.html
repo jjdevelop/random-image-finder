@@ -1,4 +1,11 @@
 <ion-view view-title="Random Image Finder">
+    <!-- Logo -->
+    <ion-nav-bar class="bar-positive custom-blue">
+       <ion-nav-buttons side="left">
+            <img class='title-image' height='33' src='img/ionic.png' >
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
     <ion-content scroll="false">
     <form ng-submit=search(searchTerm)>
 	    <label class="item item-input">
@@ -14,7 +21,6 @@
     	</div>
     </div>
   <div>
-
 
   <div class="item tabs tabs-secondary tabs-icon-top bottom">
         <a class="tab-item" ng-disabled="count < 1" ng-click="prev()">

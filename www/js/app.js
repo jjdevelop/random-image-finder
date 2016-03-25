@@ -43,7 +43,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   if(window.AdMob) AdMob.createBanner( {
       adId:admobid.banner, 
       position:AdMob.AD_POSITION.BOTTOM_CENTER, 
-      isTesting: true,
+      isTesting: false,
       autoShow:true} );
 
 

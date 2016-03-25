@@ -23,5 +23,7 @@
     "ionic-plugin-keyboard",
     "com.google.cordova.admob"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }

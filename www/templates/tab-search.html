@@ -17,7 +17,7 @@
   	<div class="row">
   		<div class="center">
 	  		<div ng-show="loading"><img class="img_result" src="img/loading.gif"></div>
-	    	<div ng-hide="loading"><img class="img_result" on-swipe-left="next()" on-swipe-right="prev()" ng-src="{{currentPhotoSrc}}"></div>
+	    	<div ng-hide="loading"><img class="img_result" ng-click="showImage()" on-swipe-left="next()" on-swipe-right="prev()" ng-src="{{currentPhotoSrc}}"></div>
     	</div>
     </div>
   <div>
@@ -28,10 +28,10 @@
           Previous
           <i class="icon ion-close"></i>
         </a>
-       <!--  <a class="tab-item" ng-click="next()">
-          <i class="icon ion-heart"></i>
-          Favorite
-        </a> -->
+        <a class="tab-item" ng-disabled="count == null" ng-click="random()">
+          <i class="icon ion-refresh"></i>
+          Random
+        </a>
         <a class="tab-item" ng-disabled="count == null" ng-click="next()">
           <i class="icon ion-arrow-right-a"></i>
           Next

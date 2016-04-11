@@ -1,6 +1,6 @@
 angular.module('imagefinder.controllers', [])
 
-.controller('SearchCtrl', function($scope, Flickr) {
+.controller('SearchCtrl', function($scope, Flickr, $ionicModal) {
 	  $scope.photos = [];
     $scope.currentPhoto = null;
     $scope.prevPhoto = null;
@@ -25,8 +25,7 @@ angular.module('imagefinder.controllers', [])
 
             if ($scope.photos.length > 0) {
               $scope.count = 0;
-              $scope.currentPhoto = data.photos.photo[$scope.count];
-              $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
+              $scope.setCurrentPhoto($scope.count);
             } else {
               $scope.count = null;
               $scope.currentPhoto = null;
@@ -41,19 +40,36 @@ angular.module('imagefinder.controllers', [])
     $scope.next = function(){
       if ($scope.photos.length > 0) {
         $scope.count += 1;
-        $scope.currentPhoto = $scope.photos[$scope.count];
-        $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
-        console.log('Count:' + $scope.count);
+        $scope.setCurrentPhoto($scope.count);
+
+        console.log('Next Count:' + $scope.count);
+
+        // Reset if hit last photo
+        if ($scope.count == $scope.photos.length) {
+          $scope.count = 0;
+        }
       }
     }
 
     $scope.prev = function(){
       if ($scope.count > 0) {
         $scope.count -= 1;
-        $scope.currentPhoto = $scope.photos[$scope.count];
-        $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
+        $scope.setCurrentPhoto($scope.count);
       }
-      console.log('Count:' + $scope.count);
+      console.log('Prev Count:' + $scope.count);
+    }
+
+    $scope.random = function(){
+      if ($scope.photos.length > 0) {
+        $scope.count = Math.floor((Math.random() * ($scope.photos.length - 1)));
+        $scope.setCurrentPhoto($scope.count);
+        console.log('Count:' + $scope.count);
+      }
+    }
+
+    $scope.setCurrentPhoto = function(count){
+      $scope.currentPhoto = $scope.photos[count];
+      $scope.currentPhotoSrc = $scope.getCurrentPhotoSrc();
     }
 
     $scope.getCurrentPhotoSrc = function() {
@@ -66,6 +82,42 @@ angular.module('imagefinder.controllers', [])
               + '_'
               + $scope.currentPhoto.secret
               + '_z.jpg';
+    }
+
+    $ionicModal.fromTemplateUrl('templates/image-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hide', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
+    $scope.$on('modal.shown', function() {
+      console.log('Modal is shown!');
+    });
+
+    $scope.showImage = function() {
+      $scope.imageSrc = $scope.getCurrentPhotoSrc();
+      $scope.openModal();
     }
 })
 

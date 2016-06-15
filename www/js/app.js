@@ -30,7 +30,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
             };
         } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
             admobid = { // for iOS
-                banner: 'ca-app-pub-6869992474017983/4806197152',
+                banner: 'ca-app-pub-4258706668546151/3203240824',
                 interstitial: 'ca-app-pub-6869992474017983/7563979554'
             };
         } else {
@@ -43,7 +43,7 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   if(window.AdMob) AdMob.createBanner( {
       adId:admobid.banner, 
       position:AdMob.AD_POSITION.BOTTOM_CENTER, 
-      isTesting: false,
+      isTesting: true,
       autoShow:true} );
 
 

@@ -136,3 +136,97 @@ angular.module('imagefinder.controllers', [])
 .controller('settingsCtrl', function($scope) {
 
 })
+
+.controller('MenuCtrl', function($scope, $location,$ionicPopover) {
+  $scope.dummyShow = function(num) {
+    console.log("BUTTON CLICKED:" + num);
+
+  }
+  
+  $ionicPopover.fromTemplateUrl('templates/menu.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+  
+  $scope.showMenu = function($event) {
+    $scope.popover.show($event);
+  }
+  
+     $scope.closePopover = function() {
+      $scope.popover.hide();
+   };
+
+   //Cleanup the popover when we're done with it!
+   $scope.$on('$destroy', function() {
+      $scope.popover.remove();
+   });
+
+   // Execute action on hide popover
+   $scope.$on('popover.hidden', function() {
+      // Execute action
+   });
+
+   // Execute action on remove popover
+   $scope.$on('popover.removed', function() {
+      // Execute action
+   });
+  
+})
+
+.controller('DownloadCtrl', function($scope, $http, $cordovaFileTransfer, $ionicPopup) {
+
+  $scope.Download = function () {
+
+    $scope.popover.hide();
+
+ // File for download
+      //var url = "http://www.gajotres.net/wp-content/uploads/2015/04/logo_radni.png";
+       
+      // File name only
+      var filename = $scope.currentPhotoSrc.split("/").pop();
+       
+      // Save location
+      var targetPath = cordova.file.externalRootDirectory + 'Pictures/'+ filename;
+ 
+      $cordovaFileTransfer.download($scope.currentPhotoSrc, targetPath, {}, true).then(function (result) {
+          console.log('Success');
+          $scope.showDownloadedAlert();
+      }, function (error) {
+          console.log('Error');
+      }, function (progress) {
+        
+          // PROGRESS HANDLING GOES HERE
+      });
+
+  }
+
+  $scope.showDownloadedAlert = function() {
+    $scope.popover.hide();
+    var alertPopup = $ionicPopup.alert({
+    title: '',
+    template: 'Picture Saved'
+      });
+
+      alertPopup.then(function(res) {
+        console.log('Picture Saved.');
+         // Custom functionality....
+      });
+
+  }
+
+  $scope.showAboutAlert = function() {
+  
+  $scope.popover.hide();
+      var alertPopup = $ionicPopup.alert({
+         title: 'About',
+         template: 'Random Image Finder Version 1.1'
+      });
+
+      alertPopup.then(function(res) {
+        console.log('View About.');
+         // Custom functionality....
+      });
+   };
+
+});

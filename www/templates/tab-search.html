@@ -4,6 +4,22 @@
        <ion-nav-buttons side="left">
             <img class='title-image' height='33' src='img/ionic.png' >
         </ion-nav-buttons>
+
+          <ion-nav-buttons side="right">
+    <!--<button-menu class="whiteText" icon-cls="icon ion-plus-round">
+      <button-menu-wrapper>
+        <menu-item ng-click="dummyShow(1)">
+          <i class="icon ion-bluetooth"></i> Menu 1
+        </menu-item>
+        <menu-item ng-click="dummyShow(2)">
+          <i class="icon ion-bluetooth"></i> Menu 2
+        </menu-item>
+      </button-menu-wrapper>
+    </button-menu>-->
+    <button class="button button-icon" ng-click="showMenu($event)" ng-controller="MenuCtrl">
+      <i class="icon ion-navicon-round"></i>
+    </button>
+  </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content scroll="false">
@@ -37,6 +53,8 @@
           Next
         </a>
       </div>
+
+
 
 <!-- 			<span>
 		  count: {{count}}

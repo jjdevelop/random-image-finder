@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.services'])
+angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -106,7 +106,6 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   //   }
   // })
 
-  ;
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/tab/search');
@@ -115,3 +114,4 @@ angular.module('imagefinder', ['ionic', 'imagefinder.controllers', 'imagefinder.
   $ionicConfigProvider.tabs.position('top');
 
 });
+

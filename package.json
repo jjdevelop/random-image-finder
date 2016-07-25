@@ -24,6 +24,10 @@
     "com.google.cordova.admob"
   ],
   "cordovaPlatforms": [
-    "ios"
+    "ios",
+    {
+      "platform": "android",
+      "locator": "browser"
+    }
   ]
 }

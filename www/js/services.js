@@ -31,4 +31,11 @@ angular.module('imagefinder.services', ['ionic'])
       return deferred.promise;
     }
   };
+})
+
+.service("SearchData", function(){
+
+var SearchData = this;
+SearchData.count=null;
+
 });

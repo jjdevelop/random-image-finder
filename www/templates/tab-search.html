@@ -39,16 +39,16 @@
   <div>
 
   <div class="item tabs tabs-secondary tabs-icon-top bottom">
-        <a class="tab-item" ng-disabled="count < 1" ng-click="prev()">
+        <a class="tab-item" ng-disabled="SearchData.count < 1" ng-click="prev()">
           <i class="icon ion-arrow-left-a"></i>
           Previous
           <i class="icon ion-close"></i>
         </a>
-        <a class="tab-item" ng-disabled="count == null" ng-click="random()">
+        <a class="tab-item" ng-disabled="SearchData.count == null" ng-click="random()">
           <i class="icon ion-refresh"></i>
           Random
         </a>
-        <a class="tab-item" ng-disabled="count == null" ng-click="next()">
+        <a class="tab-item" ng-disabled="SearchData.count == null" ng-click="next()">
           <i class="icon ion-arrow-right-a"></i>
           Next
         </a>

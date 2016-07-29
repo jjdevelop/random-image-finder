@@ -1,12 +1,12 @@
 angular.module('imagefinder.controllers', [])
 
-.controller('SearchCtrl', function($scope, Flickr, $ionicModal) {
+.controller('SearchCtrl', function($scope, Flickr, $ionicModal, SearchData) {
 	  $scope.photos = [];
     $scope.currentPhoto = null;
     $scope.prevPhoto = null;
     $scope.nextPhoto = null;
     $scope.currentPhotoSrc = '';
-    $scope.count = null;
+    $scope.SearchData = SearchData;
 
     $scope.search = function(search){
         if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -24,10 +24,10 @@ angular.module('imagefinder.controllers', [])
             $scope.loading = false;
 
             if ($scope.photos.length > 0) {
-              $scope.count = 0;
-              $scope.setCurrentPhoto($scope.count);
+              SearchData.count = 0;
+              $scope.setCurrentPhoto(SearchData.count);
             } else {
-              $scope.count = null;
+              SearchData.count = null;
               $scope.currentPhoto = null;
               $scope.currentPhotoSrc = "img/sad_no_results.png";
             }
@@ -39,31 +39,31 @@ angular.module('imagefinder.controllers', [])
 
     $scope.next = function(){
       if ($scope.photos.length > 0) {
-        $scope.count += 1;
-        $scope.setCurrentPhoto($scope.count);
+        SearchData.count += 1;
+        $scope.setCurrentPhoto(SearchData.count);
 
-        console.log('Next Count:' + $scope.count);
+        console.log('Next Count:' + SearchData.count);
 
         // Reset if hit last photo
-        if ($scope.count == $scope.photos.length) {
-          $scope.count = 0;
+        if (SearchData.count == $scope.photos.length) {
+          SearchData.count = 0;
         }
       }
     }
 
     $scope.prev = function(){
-      if ($scope.count > 0) {
-        $scope.count -= 1;
-        $scope.setCurrentPhoto($scope.count);
+      if (SearchData.count > 0) {
+        SearchData.count -= 1;
+        $scope.setCurrentPhoto(SearchData.count);
       }
-      console.log('Prev Count:' + $scope.count);
+      console.log('Prev Count:' + SearchData.count);
     }
 
     $scope.random = function(){
       if ($scope.photos.length > 0) {
-        $scope.count = Math.floor((Math.random() * ($scope.photos.length - 1)));
-        $scope.setCurrentPhoto($scope.count);
-        console.log('Count:' + $scope.count);
+        SearchData.count = Math.floor((Math.random() * ($scope.photos.length - 1)));
+        $scope.setCurrentPhoto(SearchData.count);
+        console.log('Count:' + SearchData.count);
       }
     }
 
@@ -174,14 +174,13 @@ angular.module('imagefinder.controllers', [])
   
 })
 
-.controller('DownloadCtrl', function($scope, $http, $cordovaFileTransfer, $ionicPopup) {
+.controller('DownloadCtrl', function($scope, $http, $cordovaFileTransfer, $ionicPopup, SearchData) {
+
+  $scope.SearchData = SearchData;
 
   $scope.Download = function () {
 
     $scope.popover.hide();
-
- // File for download
-      //var url = "http://www.gajotres.net/wp-content/uploads/2015/04/logo_radni.png";
        
       // File name only
       var filename = $scope.currentPhotoSrc.split("/").pop();

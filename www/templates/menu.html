@@ -2,7 +2,7 @@
 <ion-popover-view>
   <ion-content>
     <div class="list">
-      <a class="item" ng-click="Download()" ng-controller="DownloadCtrl">
+      <a class="item" a-disabled="SearchData.count == null" ng-click="Download()" ng-controller="DownloadCtrl">
         <i class="ion-ios-cloud-download-outline"></i>
         Save to Phone
       </a>

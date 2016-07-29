@@ -184,12 +184,28 @@ angular.module('imagefinder.controllers', [])
        
       // File name only
       var filename = $scope.currentPhotoSrc.split("/").pop();
-       
+      var targetPath;
+
       // Save location
-      var targetPath = cordova.file.externalRootDirectory + 'Pictures/'+ filename;
- 
+      if( /(android)/i.test(navigator.userAgent) ) { 
+
+        targetPath = cordova.file.externalRootDirectory +  filename;
+
+         }
+       else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+
+        targetPath = cordova.file.dataDirectory +  filename;
+      }
+      else
+      {
+targetPath = cordova.file.dataDirectory +  filename;
+        
+      }
+
+
       $cordovaFileTransfer.download($scope.currentPhotoSrc, targetPath, {}, true).then(function (result) {
           console.log('Success');
+          refreshMedia.refresh(targetPath);
           $scope.showDownloadedAlert();
       }, function (error) {
           console.log('Error');

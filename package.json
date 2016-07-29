@@ -21,7 +21,12 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "com.google.cordova.admob"
+    "com.google.cordova.admob",
+    "cordova-plugin-file-transfer",
+    {
+      "locator": "https://github.com/lotterfriends/refreshgallery",
+      "id": "com.guinatal.refreshgallery"
+    }
   ],
   "cordovaPlatforms": [
     "ios",

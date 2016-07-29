@@ -199,14 +199,16 @@ angular.module('imagefinder.controllers', [])
       else
       {
 targetPath = cordova.file.dataDirectory +  filename;
-        
+
       }
 
 
       $cordovaFileTransfer.download($scope.currentPhotoSrc, targetPath, {}, true).then(function (result) {
           console.log('Success');
+                    // $scope.showDownloadedAlert();
+                    alert('Download Success');
           refreshMedia.refresh(targetPath);
-          $scope.showDownloadedAlert();
+
       }, function (error) {
           console.log('Error');
       }, function (progress) {
